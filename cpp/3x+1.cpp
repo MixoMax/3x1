@@ -31,5 +31,5 @@ int main() {
 
     //print result
     cout << max_n << " " << max_count << endl;
-    cout << "Time: " << clock() - start_time << "ms" << endl;
+    cout << clock() - start_time << "ms" << endl;
 }
