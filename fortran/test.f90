@@ -1,18 +1,20 @@
 program three_x_plus_one
   implicit none
-  
-  integer(kind=16) :: n, input_n, max, total_n
+
+  !boilerplate
+  integer(kind=8) :: n, total_n
   integer :: count, i, max_n, max_count
   integer :: start_time, end_time, elapsed_time, current_time
   integer :: percent
   
-  call system_clock(start_time)
-
-  total_n = 1000000000
+  total_n = 1000000
 
   i = 1
   max_n = 0
   max_count = 0
+  call system_clock(start_time)
+
+  !calculate
   do while (i < total_n)
     i = i + 1
     n = i
@@ -26,14 +28,13 @@ program three_x_plus_one
       end if
     end do
     if (count > max_count) then
-      percent = int(100.0 * i / total_n)
       max_count = count
       max_n = i
-      call system_clock(current_time)
-      print *, max_n, max_count, percent, int(current_time - start_time)
     end if
   end do
 
+
+  !print result
   call system_clock(end_time)
   elapsed_time = end_time - start_time
 

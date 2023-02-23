@@ -1,10 +1,17 @@
 import time
-t1 = time.time()
+import math
+
+#boilerplate
+total_n = int(1_000_000)
+i = 0
+max_n = 0
 max_count = 0
-max_i = 0
-for i in range(1000):
-    count = 0
+start_time = time.time()
+
+#calculate
+for i in range(1, total_n):
     n = i
+    count = 0
     while n != 1:
         if n % 2 == 0:
             n = n // 2
@@ -14,7 +21,9 @@ for i in range(1000):
     
     if count > max_count:
         max_count = count
-        max_i = i
+        max_n = i
 
-print(max_i, max_count)
-print(time.time() - t1)
+#print results
+elapsed_time = math.floor((time.time()-start_time)*1000)
+
+print(max_n, max_count, elapsed_time, "ms")

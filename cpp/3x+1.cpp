@@ -1,32 +1,35 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int main() {
-    int i = 1;
-    int n = 0;
-    int count = 0;
+    //boilerplate
+    int_fast64_t total_n = 1000000;
+    int_fast64_t max_n = 0;
     int max_count = 0;
-    int max_i = 0;
-    float start_time, end_time;
+    int start_time = clock();
 
-    start_time = clock();
-    for (i = 1; i <= 1000000; i++) {
-        n = i;
-        count = 0;
-        while (n != 1) {
-            if (n % 2 == 0) {
-                n = n / 2;
+
+    //calculate
+    for (int n = 1; n <= total_n; n++) {
+        int count = 0;
+        int_fast64_t i = n;
+        while (i != 1) {
+            if (i % 2 == 0) {
+                i = i / 2;
             } else {
-                n = 3 * n + 1;
+                i = 3 * i + 1;
             }
             count++;
         }
         if (count > max_count) {
             max_count = count;
-            max_i = i;
+            max_n = n;
         }
     }
-    end_time = clock();
-    cout << max_i << " " << max_count << endl;
-    cout << "Time: " << (end_time - start_time) / CLOCKS_PER_SEC << "s" << endl;
+
+
+    //print result
+    cout << max_n << " " << max_count << endl;
+    cout << "Time: " << clock() - start_time << "ms" << endl;
 }
