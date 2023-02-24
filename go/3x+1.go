@@ -30,5 +30,5 @@ func main() {
 
 	end_time := time.Now().UnixNano()
 
-	fmt.Printf("%d %d %d ms\n", max_n, max_count, (end_time-start_time)/1000000)
+	fmt.Printf("%d %d ?%d ms\n", max_n, max_count, (end_time-start_time)/1000000)
 }

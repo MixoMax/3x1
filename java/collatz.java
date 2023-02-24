@@ -1,13 +1,14 @@
+import java.time.Instant;
 
 public class collatz {
     public static void main(String[] args) {
         _Collatz();
     }
     public static void _Collatz() {
-        long total_n = 1000;
+        long total_n = 1000000;
         long max_n = 0;
         int max_count = 0;
-        long time = Instant.now().getEpochSecond();
+        long time = System.currentTimeMillis();
         for (int n = 1; n <= total_n; n++) {
             int count = 0;
             long i = n;
@@ -24,7 +25,8 @@ public class collatz {
                 max_n = n;
             }
         }
+        long delta_time_ms = (System.currentTimeMillis() - time);
 
-        System.out.println(max_n + " " + max_count + " " + (Instant.now().getEpochSecond() - time) + "s" );
+        System.out.println(max_n + " " + max_count + "?" + (delta_time_ms) + "ms" );
     }
 }

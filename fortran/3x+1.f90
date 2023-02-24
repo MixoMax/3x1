@@ -38,8 +38,8 @@ program three_x_plus_one
   call system_clock(end_time)
   elapsed_time = end_time - start_time
 
-  print *, max_n, max_count
-  print *, elapsed_time, "ms"
+
+  print *, max_n, max_count,"?", elapsed_time, "ms"
 
 end program three_x_plus_one
 

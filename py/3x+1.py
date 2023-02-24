@@ -26,4 +26,4 @@ for i in range(1, total_n):
 #print results
 elapsed_time = math.floor((time.time()-start_time)*1000)
 
-print(max_n, max_count, elapsed_time, "ms")
+print(max_n, max_count, "?", elapsed_time, "ms")
