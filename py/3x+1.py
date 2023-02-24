@@ -2,7 +2,7 @@ import time
 import math
 
 #boilerplate
-total_n = int(1_000_000)
+total_n = int(999_999)
 i = 0
 max_n = 0
 max_count = 0
@@ -10,11 +10,11 @@ start_time = time.time()
 
 #calculate
 for i in range(total_n):
-    n = i
+    n = i + 1
     count = 0
     while n != 1:
         if n % 2 == 0:
-            n = n // 2
+            n = n / 2
         else:
             n = 3 * n + 1
         count += 1
