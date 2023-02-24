@@ -9,7 +9,7 @@ max_count = 0
 start_time = time.time()
 
 #calculate
-for i in range(1, total_n):
+for i in range(total_n):
     n = i
     count = 0
     while n != 1:

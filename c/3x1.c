@@ -1,11 +1,10 @@
-#include <iostream>
-#include <ctime>
-using namespace std;
+#include <stdio.h>
+#include <time.h>
 
 int main() {
     //boilerplate
-    int_fast64_t total_n = 1000000;
-    int_fast64_t max_n = 0;
+    long total_n = 1000000;
+    long max_n = 0;
     int max_count = 0;
     int start_time = clock();
 
@@ -13,7 +12,7 @@ int main() {
     //calculate
     for (int n = 1; n <= total_n; n++) {
         int count = 0;
-        int_fast64_t i = n;
+        long i = n;
         while (i != 1) {
             if (i % 2 == 0) {
                 i = i / 2;
@@ -27,6 +26,8 @@ int main() {
             max_n = n;
         }
     }
+
+
     //print result
-    cout << max_n << " " << max_count << "?" << (clock() - start_time) << "ms" << endl;
+    printf("%d %d? %dms", max_n, max_count, (clock() - start_time));
 }

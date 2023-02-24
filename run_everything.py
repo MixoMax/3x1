@@ -84,25 +84,57 @@ def run_go(n=10):
     return avg
 
 def run_java(n=10):
-    pass
+    times = []
+    file_path = "./java/collatz.java"
+    
+    subprocess.run(["javac", file_path])
+    
+    for i in tqdm(range(n), desc="Running Java", leave=False):
+        result = subprocess.run(["java", "./java/collatz.class"], stdout=subprocess.PIPE)
+        out_str = result.stdout.decode("utf-8")
+        out_str = seperate_time(out_str)
+        times.append(int(out_str))
+    
+    avg = sum(times) / len(times)
+    print("finished Java")
+    return avg
 
 
 def main():
     print("approx 30s per run")
     n = int(input("How many times to run each program? "))
-    py_avg = run_python(n)
-    #py_avg = 0
-    cpp_avg = run_cpp(n)
-    for_avg = run_fortran(n)
-    go_avg = run_go(n)
+    try:
+        py_avg = run_python(n)
+    except:
+        py_avg = -1
     
+    try:
+        cpp_avg = run_cpp(n)
+    except:
+        cpp_avg = -1
+    
+    try:
+        for_avg = run_fortran(n)
+    except:
+        for_avg = -1
+    
+    try:
+        go_avg = run_go(n)
+    except:
+        go_avg = -1
+    
+    try:
+        java_avg = run_java(n)
+    except:
+        java_avg = -1
     print("\n")
     
     time_dict = {
         "Python": py_avg,
         "C++": cpp_avg,
         "Fortran 90": for_avg,
-        "Go": go_avg
+        "Go": go_avg,
+        "Java": java_avg
     }
     
     # Sort the dictionary by value
@@ -110,7 +142,11 @@ def main():
     
     print("lang".ljust(16), "avg time")
     for lang, avg_time in sorted_dict.items():
-        print(lang.ljust(16), str(avg_time) +  "ms")
+        if avg_time == -1:
+            avg_time = "failed"
+        else:
+            avg_time = str(avg_time) + "ms"
+        print(lang.ljust(16), str(avg_time))
         
     
 
