@@ -1,4 +1,3 @@
-import java.time.Instant;
 
 public class collatz {
     public static void main(String[] args) {
