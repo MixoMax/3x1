@@ -87,10 +87,8 @@ def run_java(n=10):
     times = []
     file_path = "./java/collatz.java"
     
-    subprocess.run(["javac", file_path])
-    
     for i in tqdm(range(n), desc="Running Java", leave=False):
-        result = subprocess.run(["java", "./java/collatz.class"], stdout=subprocess.PIPE)
+        result = subprocess.run(["java", file_path], stdout=subprocess.PIPE)
         out_str = result.stdout.decode("utf-8")
         out_str = seperate_time(out_str)
         times.append(int(out_str))
@@ -99,6 +97,20 @@ def run_java(n=10):
     print("finished Java")
     return avg
 
+def run_javascript(n=10):
+    times = []
+    file_path = "./javascript/3x+1.js"
+
+    for i in tqdm(range(n), desc="Running JavaScript", leave=False):
+        # Run the JavaScript file
+        result = subprocess.run(["node", file_path], stdout=subprocess.PIPE)
+        out_str = result.stdout.decode("utf-8")
+        out_str = seperate_time(out_str)
+        times.append(int(out_str))
+    
+    avg = sum(times) / len(times)
+    print("finished JavaScript")
+    return avg
 
 def main():
     print("approx 30s per run")
@@ -127,6 +139,11 @@ def main():
         java_avg = run_java(n)
     except:
         java_avg = -1
+
+    try:
+        js_avg = run_javascript(n)
+    except:
+        js_avg = -1
     print("\n")
     
     time_dict = {
@@ -134,7 +151,8 @@ def main():
         "C++": cpp_avg,
         "Fortran 90": for_avg,
         "Go": go_avg,
-        "Java": java_avg
+        "Java": java_avg,
+        "JavaScript": js_avg
     }
     
     # Sort the dictionary by value
